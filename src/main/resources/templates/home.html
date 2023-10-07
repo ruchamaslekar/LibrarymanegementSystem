@@ -67,7 +67,7 @@
 <!--<form action="#" th:action="@{/user_login}" method="post" th:object="${user}">-->
 <form action="#" th:action="@{/borrow-books}" method="get">
     <label for="title">Search the book by name</label>
-    <input type="text" id="title" name="title" minlength="2">
+    <input type="text" id="title" name="title" minlength="2" required>
     <button type="submit" class="Search" formaction="search-books"> Search</button>
     <button type="submit" class="borrow" formaction="borrow-books"> Borrow</button>
     <button type="submit" class="transaction" formaction="transaction-history"> Transaction History</button>
