@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Library Management System</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<style>
+      table,tr {
+         border:1px solid black;
+         border-spacing: 20px;
+      }
+   </style>
+<body>
+<form action="#" th:action="@{/home}" method="post">
+<h2>Transaction History</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th><br>
+        <th>Book id</th>
+        <th>Action</th>
+        <th>Last Updated</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="TransactionHistory : ${history}">
+        <td th:text="${TransactionHistory.getId()}"></td>
+        <td th:text="${TransactionHistory.getBookId()}"></td>
+        <td th:text="${TransactionHistory.getAction()}"></td>
+        <td th:text="${TransactionHistory.getDate()}"></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <button type="submit" class="back" formaction="home"> Back</button>
+</div>
+</form>
+</body>
+</html>

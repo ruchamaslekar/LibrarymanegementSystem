@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Library Management System</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<center> <h2> Book details </h2> </center>
+<form action="#" th:action="@{/book-details}" method="post">
+
+    <div class="container">
+        <p th:text="${book}">message</p>
+    </div>
+</form>
+
+</body>
+</html>

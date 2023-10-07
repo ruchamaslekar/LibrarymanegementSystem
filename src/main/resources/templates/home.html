@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Library Management System</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<!--    <style>-->
+<!--    .sidebar {-->
+<!--  margin: 0;-->
+<!--  padding: 0;-->
+<!--  width: 300px;-->
+<!--  background-color: #f1f1f1;-->
+<!--  position: fixed;-->
+<!--  height: 100%;-->
+<!--  overflow: auto;-->
+<!--  border: 2px solid black;-->
+<!--}-->
+<!--.sidebar a {-->
+<!--  display: block;-->
+<!--  color: black;-->
+<!--  padding: 16px;-->
+<!--  text-decoration: none;-->
+<!--  text-color: white;-->
+<!--}-->
+
+<!--&lt;!&ndash;.sidebar a:hover:not(.active) {&ndash;&gt;-->
+<!--&lt;!&ndash;  background-color: #555;&ndash;&gt;-->
+<!--&lt;!&ndash;  color: white;&ndash;&gt;-->
+<!--&lt;!&ndash;}&ndash;&gt;-->
+
+<!--.sidebar a:hover {-->
+<!--  background-color: #555;-->
+<!--  color: white;-->
+<!--}-->
+<!--div.content {-->
+<!--  margin-left: 300px;-->
+<!--  padding: 1px 16px;-->
+<!--  height: 1000px;-->
+<!--  background-color: pink;-->
+
+<!--&lt;!&ndash;    background-image: url('/Users/ruchamaslekar/LibraryManagementSystem/src/main/resources/library.jpeg');&ndash;&gt;-->
+
+<!--}-->
+
+<!--@media screen and (max-width: 700px) {-->
+<!--  .sidebar {-->
+<!--    width: 100%;-->
+<!--    height: auto;-->
+<!--    position: relative;-->
+<!--  }-->
+<!--  .sidebar a {float: left;}-->
+<!--  div.content {margin-left: 0;}-->
+<!--}-->
+
+
+<!--@media screen and (max-width: 400px) {-->
+<!--  .sidebar a {-->
+<!--    text-align: center;-->
+<!--    float: none;-->
+<!--  }-->
+<!--}-->
+
+<!--</style>-->
+</head>
+<body>
+<div class="sidebar">
+<!--<center> <h1> Home </h1> </center>-->
+<!--<form action="#" th:action="@{/user_login}" method="post" th:object="${user}">-->
+<form action="#" th:action="@{/borrow-books}" method="get">
+    <label for="title">Search the book by name</label>
+    <input type="text" id="title" name="title" minlength="2">
+    <button type="submit" class="Search" formaction="search-books"> Search</button>
+    <button type="submit" class="borrow" formaction="borrow-books"> Borrow</button>
+    <button type="submit" class="transaction" formaction="transaction-history"> Transaction History</button>
+</form>
+</div>
+</body>
+</html>
