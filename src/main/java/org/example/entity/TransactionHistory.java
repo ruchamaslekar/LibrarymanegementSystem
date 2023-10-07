@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -21,10 +22,12 @@ public class TransactionHistory {
     public enum Action{borrowed,returned};
     @Enumerated(EnumType.STRING)
     private Action action;
-    private Date date;
+
+    @Column(name = "last_updated")
+    private Timestamp date;
     private String title;
 
-    public TransactionHistory(int id, int bookId, Action action,Date date,String title) {
+    public TransactionHistory(int id, int bookId, Action action,Timestamp date,String title) {
         this.id = id;
         this.bookId = bookId;
         this.action = action;
@@ -41,7 +44,7 @@ public class TransactionHistory {
         return bookId;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
