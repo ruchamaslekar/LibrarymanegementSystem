@@ -28,7 +28,10 @@ public class StudentController {
     public String displayHomePage(Model model) {
         List<Student> studentList = studentService.fetchStudentList();
         model.addAttribute("list",studentList);
-//        LOGGER.info("Inside Home: ");
+        if(studentList == null)
+        {
+             model.addAttribute(" No student available");
+        }
         return "home";
     }
 

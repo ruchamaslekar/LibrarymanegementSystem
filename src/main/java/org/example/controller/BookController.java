@@ -40,8 +40,15 @@ public class BookController {
     @GetMapping("/search-books")
     public String searchBook(@RequestParam String title,Model model) {
         List<Book> bookList = bookService.searchBooksByTitle(title);
-        model.addAttribute("list", bookList);
+        String error = " No book with this name is available";
+        if(bookList.isEmpty()) {
+            model.addAttribute("error",error);
+        }
+        else {
+            model.addAttribute("list", bookList);
+        }
         return "search-books";
+
     }
 
     /** Method to get result of borrow Book from service
