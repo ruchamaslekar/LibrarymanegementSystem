@@ -2,12 +2,14 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Library Management System</title>
+    <script defer src="login.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <form action="#" th:action="@{/home}" method="post">
     <div class="container">
         <p th:text="${list}">list</p>
+        <p th:text="${error}">list</p>
     </div>
     <div>
         <button type="submit" class="back1" formaction="home"> Back</button>

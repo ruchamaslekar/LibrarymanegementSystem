@@ -16,8 +16,7 @@
 <table>
     <thead>
     <tr>
-        <th>Id</th><br>
-        <th>Book id</th>
+        <th>Title</th>
         <th>Action</th>
         <th>Last Updated</th>
 
@@ -25,8 +24,7 @@
     </thead>
     <tbody>
     <tr th:each="TransactionHistory : ${history}">
-        <td th:text="${TransactionHistory.getId()}"></td>
-        <td th:text="${TransactionHistory.getBookId()}"></td>
+        <td th:text="${TransactionHistory.getTitle()}"></td>
         <td th:text="${TransactionHistory.getAction()}"></td>
         <td th:text="${TransactionHistory.getDate()}"></td>
     </tr>
