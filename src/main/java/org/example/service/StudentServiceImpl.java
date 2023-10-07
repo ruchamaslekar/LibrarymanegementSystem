@@ -20,7 +20,7 @@ public class StudentServiceImpl implements StudentService {
             LoggerFactory.getLogger(StudentService.class);
 
     @Override
-    public List<Student> fetchUserList() {
+    public List<Student> fetchStudentList() {
         return studentRepository.findAll();
     }
 

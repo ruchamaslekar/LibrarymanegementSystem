@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 
-/*Book class implementation*/
+/**
+ * This is a Spring entity class.
+ */
 @Entity
 @Data
 @NoArgsConstructor
@@ -20,5 +22,17 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String title;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id + System.lineSeparator()+
+                ", title='" + title + '\''+ System.lineSeparator() +
+                ", author='" + author + '\'' + System.lineSeparator()+
+                ", quantity_available=" + quantity_available +
+                '}';
+    }
+
     private String author;
+    private int quantity_available;
 }
