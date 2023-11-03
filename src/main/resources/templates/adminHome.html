@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Library Management System</title>
+    <meta charset="ISO-8859-1">
+    <link rel="stylesheet" type="text/css" th:href="@{CSS/home-layout.css}">
+</head>
+
+<body>
+    <ul th:fragment="userNavBar">
+    <a href="/adminHome">Home</a>
+    <a style="float:right"></a> <a class="active" href="/login">Logout</a>
+    </ul>
+    <div class="button-container">
+        <form action="#" th:action="@{/student-list}" method="post">
+            <button type="submit" class="button" formaction="/book-list"> Book List</button>
+            <button type="submit" class="button" formaction="/student-list"> Student List</button>
+            <button type="submit" class="button" formaction="/transaction-details"> Transaction History</button>
+        </form>
+    </div>
+</body>
+</html>

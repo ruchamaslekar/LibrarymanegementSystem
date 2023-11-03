@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Library Management System</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{CSS/home-layout.css}">
+</head>
+<style>
+     ul {
+       margin: 20;
+       padding: 0;
+       overflow: hidden;
+       background-color: #6dae67;
+       min-height: 40px;
+       border:1px solid black;
+    }
+    .button {
+      background-color: #6dae67;
+      color: black;
+      border: 1px solid black;
+      padding: 10px 20px;
+      margin-left: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .search-box {
+      padding: 10px;
+      border: 1px solid black;
+      font-size: 15px;
+      min-width: 1000 px;
+    }
+</style>
+<body>
+    <ul th:fragment="userNavBar">
+        <a href="/adminHome">Home</a>&nbsp;&nbsp;
+        <a style="float:right"/> <a class="active" href="/login">Logout</a>
+    </ul>
+    <form action="#" th:action="@{/update-books}" th:object="${book}"  method="post">
+        <input type="hidden" name="id" th:value="${book.getId()}">
+        <input type="hidden" name="title" th:value="${book.getTitle()}">
+        <input type="hidden" name="author" th:value="${book.getAuthor()}">
+        <label for="quantity">Update the Quantity:</label>
+        <input type="text" name="quantity" id="quantity" class = "search-box" th:value="${book.getQuantity_available()}">
+        <button type="submit" class="button">Update</button>
+    </form>
+</body>
+</html>
