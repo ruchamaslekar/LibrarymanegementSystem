@@ -11,15 +11,20 @@ import java.util.List;
  */
 @Service
 public interface BookService {
-
     public List<Book> fetchBookList();
 
     public List<Book> searchBooksByTitle(String title);
 
-    public String borrowBookDetails(String title);
-    public String returnBookDetails(String title);
+    public String borrowBookDetails(String title,int student_id);
 
-    public List<TransactionHistory> showTransactionHistory(String title);
+    public String returnBookDetails(String title,int student_id);
 
+    public String addBookDetails(String title,String author,int quantity);
 
+    public String deleteById(int bookID);
+
+    public String getBookById(int bookID);
+
+//    public List<TransactionHistory> getTransactionHistoryForId();
+//    public List<TransactionHistory> showTransactionHistory(String title);
 }
