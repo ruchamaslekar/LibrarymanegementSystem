@@ -3,36 +3,38 @@
 <head>
     <title>Library Management System</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{CSS/home-layout.css}">
 </head>
-<style>
-      table,tr {
-         border:1px solid black;
-         border-spacing: 20px;
-      }
-   </style>
 <body>
-<form action="#" th:action="@{/home}" method="post">
-<h2>Transaction History</h2>
-<table>
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Action</th>
-        <th>Last Updated</th>
-
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="TransactionHistory : ${history}">
-        <td th:text="${TransactionHistory.getTitle()}"></td>
-        <td th:text="${TransactionHistory.getAction()}"></td>
-        <td th:text="${TransactionHistory.getDate()}"></td>
-    </tr>
-    </tbody>
-</table>
-<div>
-    <button type="submit" class="back" formaction="home"> Back</button>
-</div>
-</form>
+    <ul th:fragment="userNavBar">
+        <a href="/adminHome">Home</a>
+        <a style="float:right"/> <a class="active" href="/login">Logout</a>
+    </ul>
+    <form action="#" th:action="@{/userHome}" method="post">
+        <h2>Transaction History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Title</th>
+                    <th>Action</th>
+                    <th>Email</th>
+                    <th>Date of action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="TransactionHistory : ${history}">
+                    <td th:text="${TransactionHistory.getStudent_id()}"></td>
+                    <td th:text="${TransactionHistory.getTitle()}"></td>
+                    <td th:text="${TransactionHistory.getAction()}"></td>
+                    <td th:text="${TransactionHistory.getEmailid()}"></td>
+                    <td th:text="${TransactionHistory.getDate()}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <button type="submit" class="button" formaction="/adminHome"> Back</button>
+        </div>
+    </form>
 </body>
 </html>

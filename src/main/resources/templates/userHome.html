@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Library Management System</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{CSS/home-layout.css}">
+</head>
+<body>
+    <ul th:fragment="userNavBar">
+        <a href="/userHome">Home</a>
+        <a style="float:right"/> <a class="active" href="/login">Logout</a>
+    </ul>
+    <div class="button-container">
+        <form action="#" th:action="@{/borrow-books}" th:object="${student}" method="get">
+            <label for="title">Please enter book title here:</label>
+            <input type="text" id="title" class = "search-box" name="title" minlength="2" optional><br><br>
+            <label for="student_id">Please confirm your student id:</label>
+            <input type="Number" id="student_id" class = "search-box" name="student_id" optional ><br><br>
+            <button type="submit" class="button" formaction="/search-books"> Search</button>
+            <button type="submit" class="button" formaction="/borrow-books"> Borrow</button>
+            <button type="submit" class="button" formaction="/return-books"> Return</button>
+            <button type="submit" class="button" formaction="/user-transaction"> Transaction History</button></li>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Library Management System</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{CSS/home-layout.css}">
+</head>
+<body>
+    <h1>Register</h1>
+    <p>Please fill in this form to create an account.</p>
+    <form th:action="@{/register-done}" method="post" class="container">
+        <label for="name">Name:<span class="required"></span></label><br>
+        <input type="text" id="name" name="name" placeholder="Enter Name"required><br><br>
+        <label for="emailId">Email ID:<span class="required"></span></label><br>
+        <input type="email" id="emailId" placeholder="Enter Email" name="emailId" pattern="+@gmail\.com" size="30" required><br><br>
+        <label for="password">Password:<span class="required"></span></label><br>
+        <input type="text" id="password" placeholder="Enter Password" name="password"size="30" required><br><br>
+        <label for="role">Role:<span class="required"></span></label><br>
+        <input type="text" id="role" placeholder="Enter Role" name="role" size="10" required><br>
+        <button type="submit" class="button">Register</button>
+    </form>
+    <form><button type="submit" class="button" formaction="/login" > Back</button></form>
+    </div>
+
+</body>
+</html>
