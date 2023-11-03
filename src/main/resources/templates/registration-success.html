@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Library Management System</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{CSS/home-layout.css}">
+</head>
+<body>
+    <ul th:fragment="userNavBar">
+        <a href="/userHome">Home</a>
+        <a style="float:right"/> <a class="active" href="/login">Logout</a>
+    </ul>
+    <div class="button-container">
+        <body>
+            <form th:action="@{/login}" method="get">
+                Registration Successfull!
+                <button type="submit" class="button">Go back to login page</button>
+            </form>
+        </body>
+    </div>
+</body>
+</html>
