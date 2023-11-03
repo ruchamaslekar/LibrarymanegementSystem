@@ -1,9 +1,9 @@
 package org.example.controller;
 
+import org.example.entity.Book;
 import org.example.entity.Student;
+import org.example.service.BookService;
 import org.example.service.StudentService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,32 +15,20 @@ import java.util.List;
  */
 @Controller
 public class StudentController {
+
     @Autowired
     private StudentService studentService;
 
-    private final Logger LOGGER =
-            LoggerFactory.getLogger(StudentController.class);
-
-    /** Method to get Student list from service
-     * and navigate it to home html page
-     */
-    @PostMapping("/home")
-    public String displayHomePage(Model model) {
-        List<Student> studentList = studentService.fetchStudentList();
-        model.addAttribute("list",studentList);
-        if(studentList == null)
-        {
-             model.addAttribute(" No student available");
-        }
-        return "home";
+    @PostMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("student", new Student());
+        return "/student-registration";
     }
 
-    /** Method to navigate to login page
-     */
-    @GetMapping("/login")
-    public String displayLoginPage()
-    {
-        return "login";
+    @PostMapping("/register-done")
+    public String registerStudent(String name,String emailId,String password, String role,Model model) {
+        studentService.registerStudent(name,emailId,password,role);
+        return "/registration-success";
     }
 
 }
