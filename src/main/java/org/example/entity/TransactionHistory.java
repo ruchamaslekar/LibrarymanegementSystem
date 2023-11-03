@@ -11,13 +11,12 @@ import java.util.Date;
 @Entity
 @Data
 @NoArgsConstructor
-@Builder
 @Table(name ="transaction_history")
 public class TransactionHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    //private int studentId;
+    private int student_id;
     private int bookId;
     public enum Action{borrowed,returned};
     @Enumerated(EnumType.STRING)
@@ -26,14 +25,16 @@ public class TransactionHistory {
     @Column(name = "last_updated")
     private Timestamp date;
     private String title;
+    private String emailid;
 
-    public TransactionHistory(int id, int bookId, Action action,Timestamp date,String title) {
+    public TransactionHistory(int id, int bookId, Action action,Timestamp date,String title,int student_id,String emailid) {
         this.id = id;
         this.bookId = bookId;
         this.action = action;
         this.date = date;
         this.title = title;
-
+        this.student_id = student_id;
+        this.emailid= emailid;
     }
 
     public int getId() {
@@ -58,6 +59,18 @@ public class TransactionHistory {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getEmailid() {
+        return emailid;
+    }
+
+    public void setEmailid(String emailid) {
+        this.emailid = emailid;
+    }
+
+    public int getStudent_id() {
+        return student_id;
     }
 
     public void setBookId(int bookId) {

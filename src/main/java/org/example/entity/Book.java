@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+
 import javax.persistence.*;
 
 
@@ -22,6 +24,9 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String title;
+    private String author;
+    private int quantity_available;
+    private String action;
 
     @Override
     public String toString() {
@@ -33,6 +38,21 @@ public class Book {
                 '}';
     }
 
-    private String author;
-    private int quantity_available;
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getQuantity_available() {
+        return quantity_available;
+    }
+
+
 }

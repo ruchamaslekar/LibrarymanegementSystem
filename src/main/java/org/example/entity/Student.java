@@ -27,7 +27,7 @@ public class Student {
         this.emailid = emailid;
         this.password = password;
         this.name = name;
-        this.role = role;
+        this.role = "ROLE_USER";
     }
 
     public String getRole() {
@@ -48,6 +48,18 @@ public class Student {
 
     public String getName() {
         return name;
+    }
+
+    public void setEmailid(String emailid) {
+        this.emailid = emailid;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
