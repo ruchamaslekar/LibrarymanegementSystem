@@ -17,7 +17,10 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query(value = "SELECT * FROM books WHERE title like %?1%", nativeQuery = true)
     List<Book> findByTitleContaining(String title);
 
-    @Query(value = "SELECT * FROM books WHERE title=?1 and quantity_available > 0", nativeQuery = true)
+    @Query(value = "SELECT * FROM books WHERE id=?1", nativeQuery = true)
+    Book findById(int bookID);
+
+    @Query(value = "SELECT * FROM books WHERE title=?1 and quantity_available >= 0", nativeQuery = true)
     Book getBookDetails(String bookTitle);
 
     @Transactional
@@ -27,7 +30,21 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     @Transactional
     @Modifying
+    @Query(value = "UPDATE books SET quantity_available = ?1 WHERE id=?2", nativeQuery = true)
+    void updateBooks(int quantity,int id);
+
+    @Transactional
+    @Modifying
     @Query(value = "UPDATE books SET quantity_available = quantity_available + 1 WHERE title=?1", nativeQuery = true)
     void modifyTable(String bookTitle);
 
+    @Transactional
+    @Modifying
+    @Query(value = "Insert into books(title,author,quantity_available) values(?1,?2,?3)", nativeQuery = true)
+    void addToTable(String bookTitle,String bookAuthor,int quantity);
+
+    @Transactional
+    @Modifying
+    @Query(value = "Delete from books where id=?1", nativeQuery = true)
+    void deleteBookFromTable(int bookID);
 }
