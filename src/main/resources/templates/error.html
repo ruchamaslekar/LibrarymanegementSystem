@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{CSS/home-layout.css}">
+</head>
+<body>
+    <ul th:fragment="userNavBar">
+        <a href="/adminHome">Home</a>&nbsp;&nbsp;
+        <a style="float:right"/> <a class="active" href="/login">Logout</a>
+    </ul>
+    <h2>Error</h2>
+    <div class="wrapper">
+        <div class="container">
+            <form name="f" th:action="@{/login}" method="POST">
+                <div th:if="${error}" class="alert alert-error">
+                    <large class="incorrect">No book with this name exists</large>
+                </div><br>
+                <button type="submit" class="button" formaction="userHome"> Back</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
