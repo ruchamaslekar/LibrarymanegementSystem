@@ -4,13 +4,14 @@
     <title>Library Management System</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{CSS/home-layout.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <ul th:fragment="userNavBar">
         <a href="/adminHome">Home</a>
         <a style="float:right"/> <a class="active" href="/login">Logout</a>
     </ul>
-    <h1>Student List</h1>
+    <h2>Student List</h2>
     <table>
         <tr>
             <th>ID</th>
@@ -23,14 +24,21 @@
             <td th:text="${student.getName()}"></td>
             <td th:text="${student.getEmailId()}"></td>
             <td>
-                <a th:href="@{/edit/{id}(id=${student.getId()})}">Edit</a>
-                <a th:href="@{/delete/{id}(id=${student.getId()})}">Delete</a>
+                <a th:href="@{/edit/{id}(id=${student.getId()})}" title="Edit">&#9998;</a>
+                <a th:href="@{/delete/{id}(id=${student.getId()})}" title="Delete" style="color: red;">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
             </td>
         </tr>
-    </table>
-    <br>
+    </table><br><br>
+    <form action="#" th:action="@{/student-list}" method="post">
+        <label for="name">Name:<span class="required"></span></label>
+        <input type="text" id="name" class = "search-box" name="name" minlength="2" required>
+        <label for="emailid">Email Id:<span class="required"></span></label>
+        <input type="text" id="emailid" class = "search-box" name="emailid" minlength="2" required>
+        <button type="submit" class="button" formaction="/add"> Add Student</button>
+    </form>
     <form method="get">
-        <button type="submit" class="button" formaction="/add">Add Student</button>
         <button type="submit" class="button" formaction="/adminHome">Back</button>
     </form>
 </body>

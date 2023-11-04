@@ -35,6 +35,7 @@
         <a href="/adminHome">Home</a>&nbsp;&nbsp;
         <a style="float:right"/> <a class="active" href="/login">Logout</a>
     </ul>
+    <h2>Edit Book</h2>
     <form action="#" th:action="@{/update-books}" th:object="${book}"  method="post">
         <input type="hidden" name="id" th:value="${book.getId()}">
         <input type="hidden" name="title" th:value="${book.getTitle()}">
@@ -42,6 +43,9 @@
         <label for="quantity">Update the Quantity:</label>
         <input type="text" name="quantity" id="quantity" class = "search-box" th:value="${book.getQuantity_available()}">
         <button type="submit" class="button">Update</button>
+    </form>
+    <form >
+        <button type="submit" class="button" formaction="/book-list"> Back</button>
     </form>
 </body>
 </html>

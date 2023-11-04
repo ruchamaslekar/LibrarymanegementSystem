@@ -10,15 +10,12 @@
     <div class="wrapper">
         <div class="container">
             <form name="f" th:action="@{/login}" method="POST">
-
                 <div th:if="${error}" class="alert alert-error">
-                    <small class="incorrect">Invalid username and password.</small>
+                    <large class="incorrect">Invalid username and password.</large>
                 </div>
-
                 <div th:if="${logout}" class="alert alert-success">
-                    <small class="logout"> You have been logged out.</small>
+                    <large class="logout"> You have been logged out.</large>
                 </div>
-
                 <div class="row">
                     <div class="col-25">
                         <label for="username">Username:<span class="required"></span></label>
@@ -27,24 +24,21 @@
                         <input type="text" id="username" name="username" placeholder="Enter Username" required/>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-25">
                         <label for="password">Password:<span class="required"></span></label>
                     </div>
                     <div class="col-75">
-                        <input type="password" id="password" name="password" placeholder="Enter Password" required/>
+                        <input type="password" id="password" name="password" placeholder="Enter Password"  required/>
                     </div>
                 </div>
-
                 <div class="form-actions">
-                    <input type="submit" value="Login">
+                    <input type="submit" value="Login" class="button">
                 </div>
-
             </form>
             <form th:action="@{/register}" method="post">
                 <div class="row">
-                    <input type="submit" value="Register">
+                    <input type="submit" value="Register" class="button">
                 </div>
             </form>
         </div>

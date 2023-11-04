@@ -35,7 +35,7 @@
         <a href="/adminHome">Home</a>
         <a style="float:right"/> <a class="active" href="/login">Logout</a>
     </ul>
-    <h1>Edit Student</h1>
+    <h2>Edit Student</h2>
     <form th:object="${student}" th:action="@{/save/{id}(id=${student.id})}" method="post">
         <input type="hidden" th:field="*{id}" class="search-box">
         <label for="name">Name:<span class="required"></span></label>
@@ -45,8 +45,5 @@
         <button type="submit" class="button">Save</button>
         <button type="submit" class="button" formaction="/student-list"> Back</button>
     </form> <br><br>
-<!--    <form method="get">-->
-<!--        <button type="submit" class="button" formaction="/student-list"> Back</button>-->
-<!--    </form>-->
 </body>
 </html>

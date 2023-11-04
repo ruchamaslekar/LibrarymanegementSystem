@@ -4,13 +4,14 @@
     <title>Library Management System</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{CSS/home-layout.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <ul th:fragment="userNavBar">
         <a href="/adminHome">Home</a>
         <a style="float:right"/> <a class="active" href="/login">Logout</a>
     </ul>
-    <h1>Book List</h1>
+    <h2>Book List</h2>
     <table>
         <thead>
             <tr>
@@ -28,8 +29,10 @@
                 <td th:text="${Book.getAuthor()}"></td>
                 <td th:text="${Book.getQuantity_available()}"></td>
                 <td>
-                    <a th:href="@{/deleteBook/{id}(id=${Book.getId()})}">Delete</a>
-                    <a th:href="@{/editBook/{id}(id=${Book.getId()})}">Edit</a>
+                    <a th:href="@{/editBook/{id}(id=${Book.getId()})}" title="Edit">&#9998;</a>
+                    <a th:href="@{/deleteBook/{id}(id=${Book.getId()})}" title="Delete" style="color: red;">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
                 </td>
             </tr>
         </tbody>

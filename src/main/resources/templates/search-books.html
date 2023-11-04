@@ -10,6 +10,7 @@
         <a href="/userHome">Home</a>
         <a style="float:right"/> <a class="active" href="/login">Logout</a>
     </ul>
+    <h2>Search Book</h2><br>
     <form action="#" th:action="@{/userHome}" method="post">
         <table>
             <thead>
@@ -28,7 +29,7 @@
                     <td th:text="${Book.getQuantity_available()}"></td>
                 </tr>
             </tbody>
-        </table>
+        </table><br><br>
         <div>
             <button type="submit" class="button" formaction="userHome" > Back</button>
         </div>

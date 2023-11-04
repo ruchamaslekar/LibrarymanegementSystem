@@ -10,12 +10,13 @@
         <a href="/userHome">Home</a>
         <a style="float:right"/> <a class="active" href="/login">Logout</a>
     </ul>
+    <h2>Return Book</h2><br>
     <form action="#" th:action="@{/userHome}" method="post">
         <table>
             <tbody>
             <tr th:text="${book}">
             </tr>
-        </table>
+        </table><br><br>
         <div>
             <button type="submit" class="button" formaction="userHome"> Back</button>
         </div>
