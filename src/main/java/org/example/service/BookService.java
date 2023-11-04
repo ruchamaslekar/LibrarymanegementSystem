@@ -1,9 +1,7 @@
 package org.example.service;
 
 import org.example.entity.Book;
-import org.example.entity.TransactionHistory;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**

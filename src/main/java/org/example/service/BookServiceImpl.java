@@ -6,13 +6,9 @@ import org.example.entity.TransactionHistory;
 import org.example.repository.BookRepository;
 import org.example.repository.StudentRepository;
 import org.example.repository.TransactionHistoryRepository;
-import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 /**
