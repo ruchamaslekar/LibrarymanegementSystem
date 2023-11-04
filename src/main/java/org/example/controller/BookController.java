@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.List;
 
@@ -43,8 +44,9 @@ public class BookController {
      * student will borrow a book
      */
     @GetMapping("/borrow-books")
-    public String borrowBook(@RequestParam String title,int student_id,Model model) {
-        String bookDetails = bookService.borrowBookDetails(title,student_id);
+    public String borrowBook(@RequestParam String title,Model model,HttpSession session) {
+        Object username = session.getAttribute("username");
+        String bookDetails = bookService.borrowBookDetails(title,username.toString());
         model.addAttribute("bookString",bookDetails);
         return "/borrow-books";
     }
@@ -53,8 +55,9 @@ public class BookController {
      * student will return a book
      */
     @GetMapping("/return-books")
-    public String returnBook(String title, @RequestParam int student_id,Model model) {
-        String book =  bookService.returnBookDetails(title,student_id);
+    public String returnBook(String title,Model model,HttpSession session) {
+        Object username = session.getAttribute("username");
+        String book =  bookService.returnBookDetails(title,username.toString());
         model.addAttribute("book",book);
         return "/return-books";
     }

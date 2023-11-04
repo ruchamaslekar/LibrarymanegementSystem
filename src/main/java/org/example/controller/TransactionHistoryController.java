@@ -29,17 +29,15 @@ public class TransactionHistoryController {
      * and navigate it to transaction-history html page
      */
     @GetMapping("/user-transaction")
-    public String showTransactionHistory(int student_id, Model model) {
-        List<TransactionHistory> history = transactionRepository.getTransactionHistory(student_id);
+    public String showTransactionHistory(Model model,HttpSession session) {
+        Object username = session.getAttribute("username");
+        List<TransactionHistory> history = transactionRepository.getTransactionHistory(username.toString());
         model.addAttribute("history",history);
         return "/user-transaction";
     }
 
     @PostMapping("/transaction-history")
-    public String viewTransactionHistory(String emailid,Model model) {
-        // Fetch the transactions for the specified student
-//        List<TransactionHistory> transactions = transactionRepository.findAll();
-//        model.addAttribute("history", transactions);
+    public String viewTransactionHistory(Model model) {
         return "/transaction-history";
     }
 
