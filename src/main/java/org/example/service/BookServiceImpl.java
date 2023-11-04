@@ -2,11 +2,17 @@ package org.example.service;
 
 import org.example.entity.Book;
 import org.example.entity.Student;
+import org.example.entity.TransactionHistory;
 import org.example.repository.BookRepository;
 import org.example.repository.StudentRepository;
 import org.example.repository.TransactionHistoryRepository;
+import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +24,9 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
     @Autowired
     private StudentService studentService;
 
@@ -36,26 +45,57 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public String borrowBookDetails(String title,int student_id) {
+    public String borrowBookDetails(String title,String emailid) {
         Book book = bookRepository.getBookDetails(title);
         if (book == null) {
                return "Book not found or not available.Please try typing correct name of book or contact admin to check book availability";
         }
         String result = "Book borrowed \n" + "Name: " + book.getTitle() + "\n" + "Author: " + book.getAuthor();
         bookRepository.updateTable(title);
-        Student student = studentService.getStudentById(student_id);
-        transactionHistoryRepository.updateTransactionHistory(book.getId(),student_id, "borrowed",book.getTitle(),student.getEmailId());
+        Student student = studentRepository.findByUsername(emailid);
+        LocalDate date = LocalDate.now().plusDays(30);
+        int borrowCount =0;
+        int returnCount =0;
+        List<TransactionHistory> borrowHistory = transactionHistoryRepository.getBorrowHistory(emailid,title,"borrowed");
+        for(TransactionHistory hist: borrowHistory) {
+            borrowCount++;
+        }
+        List<TransactionHistory> returnHistory = transactionHistoryRepository.getBorrowHistory(emailid,title,"returned");
+        for(TransactionHistory hist: returnHistory) {
+            returnCount++;
+        }
+        if(borrowCount == returnCount) {
+            transactionHistoryRepository.updateTransactionHistory(book.getId(),student.getId(),"borrowed",book.getTitle(),emailid,date);
+        } else {
+            return "This book is already borrowed.Please return the borrowed book first";
+        }
         return result;
     }
 
     @Override
-    public String returnBookDetails(String title, int student_id) {
+    public String returnBookDetails(String title,String emailid) {
         Book book = bookRepository.getBookDetails(title);
         StringBuilder result = new StringBuilder();
         bookRepository.modifyTable(title);
-        Student student = studentService.getStudentById(student_id);
-        transactionHistoryRepository.updateTransactionHistory(book.getId(),student_id,"returned",book.getTitle(),student.getEmailId());
-        return "Book returned";
+        Student student = studentRepository.findByUsername(emailid);
+        LocalDate date = null;
+        int borrowCount =0;
+        int returnCount =0;
+        List<TransactionHistory> borrowHistory = transactionHistoryRepository.getBorrowHistory(emailid,title,"borrowed");
+        for(TransactionHistory hist: borrowHistory) {
+            borrowCount++;
+        }
+        List<TransactionHistory> returnHistory = transactionHistoryRepository.getBorrowHistory(emailid,title,"returned");
+        for(TransactionHistory hist: returnHistory) {
+            returnCount++;
+        }
+        if(borrowCount != returnCount) {
+            transactionHistoryRepository.updateTransactionHistory(book.getId(),student.getId(),"returned",book.getTitle(),emailid,date);
+        }
+        else {
+            return "Please borrow the book to return";
+        }
+         return studentService.checkDueDate(emailid,title);
     }
 
     @Override
@@ -88,5 +128,7 @@ public class BookServiceImpl implements BookService {
         }
         return "Book successfully deleted";
     }
+
+
 
 }

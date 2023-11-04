@@ -15,9 +15,9 @@ public interface BookService {
 
     public List<Book> searchBooksByTitle(String title);
 
-    public String borrowBookDetails(String title,int student_id);
+    public String borrowBookDetails(String title,String emailid);
 
-    public String returnBookDetails(String title,int student_id);
+    public String returnBookDetails(String title,String emailid);
 
     public String addBookDetails(String title,String author,int quantity);
 
