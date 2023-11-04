@@ -1,4 +1,5 @@
 package org.example.controller;
+
 import java.util.List;
 import org.example.entity.Student;
 import org.example.repository.TransactionHistoryRepository;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -84,22 +86,13 @@ public class HomeController {
             model.addAttribute("error", "Invalid credentials. Please try again.");
             return "/login";
         }
-
     }
 
-//    @GetMapping("/login")
-//    public String getLoginDetails(@RequestParam String username, @RequestParam String password, Model model) {
-//        if (studentService.isValidUser(username, password)) {
-//            if(studentService.isStudent(username,password)) {
-//                return "redirect:/userHome";
-//            }
-//            else{
-//                return "redirect:/adminHome";
-//            }
-//        } else{
-//            model.addAttribute("error", "Invalid credentials. Please try again.");
-//            return "/login";
-//        }
-//    }
+    @GetMapping("/logout")
+    public String logout(Model model) {
+        String logout = "You have been logged out successfully";
+        model.addAttribute("logout", logout);
+        return "/login";
+    }
 
 }
