@@ -1,8 +1,6 @@
 package org.example.controller;
 
-
 import org.example.entity.TransactionHistory;
-import org.example.repository.BookRepository;
 import org.example.repository.StudentRepository;
 import org.example.repository.TransactionHistoryRepository;
 import org.example.service.BookService;
@@ -10,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpSession;
 import java.util.List;
 

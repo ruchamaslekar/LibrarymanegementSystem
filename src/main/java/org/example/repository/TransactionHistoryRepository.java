@@ -6,9 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -29,6 +27,6 @@ public interface TransactionHistoryRepository extends JpaRepository<TransactionH
     @Query(value = "select * from transaction_history where emailid=?1 and title=?2 and action=?3",nativeQuery = true)
     List<TransactionHistory> getBorrowHistory(String emailid, String title,String action);
 
-    @Query(value = "select * from transaction_history where emailid=?1 and title=?2 and action=?3 limit 1",nativeQuery = true)
+    @Query(value = "select * from transaction_history where emailid=?1 and title=?2 and action=?3 order by last_updated desc limit 1",nativeQuery = true)
     TransactionHistory getLastRowHistory(String emailid,String title,String action);
 }
