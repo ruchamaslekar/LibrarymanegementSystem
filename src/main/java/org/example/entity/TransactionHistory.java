@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -26,8 +27,9 @@ public class TransactionHistory {
     private Timestamp date;
     private String title;
     private String emailid;
+    private LocalDate due_date;
 
-    public TransactionHistory(int id, int bookId, Action action,Timestamp date,String title,int student_id,String emailid) {
+    public TransactionHistory(int id, int bookId, Action action,Timestamp date,String title,int student_id,String emailid,LocalDate due_date) {
         this.id = id;
         this.bookId = bookId;
         this.action = action;
@@ -35,10 +37,19 @@ public class TransactionHistory {
         this.title = title;
         this.student_id = student_id;
         this.emailid= emailid;
+        this.due_date=due_date;
     }
 
     public int getId() {
         return id;
+    }
+
+    public LocalDate getDue_date() {
+        return due_date;
+    }
+
+    public void setDue_date(LocalDate due_date) {
+        this.due_date = due_date;
     }
 
     public int getBookId() {
