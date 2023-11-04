@@ -1,18 +1,13 @@
 package org.example.controller;
 
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.example.entity.Book;
 import org.example.repository.BookRepository;
-import org.example.repository.StudentRepository;
 import org.example.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpSession;
-import java.security.Principal;
 import java.util.List;
 
 /**
@@ -31,9 +26,10 @@ public class BookController {
     @GetMapping("/search-books")
     public String searchBook(@RequestParam String title,Model model) {
         List<Book> bookList = bookService.searchBooksByTitle(title);
-        String error = " No book with this name is available";
+        String error ="No book with this name is available";
         if(bookList.isEmpty()) {
-            model.addAttribute("error",error);
+            model.addAttribute("error", error);
+            return "/error";
         } else {
             model.addAttribute("list", bookList);
         }
