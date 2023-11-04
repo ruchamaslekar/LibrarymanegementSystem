@@ -1,14 +1,11 @@
 package org.example.controller;
 
-import org.example.entity.Book;
 import org.example.entity.Student;
-import org.example.service.BookService;
 import org.example.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 /**
  * This is a Spring controller class.

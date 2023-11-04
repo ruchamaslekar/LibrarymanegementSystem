@@ -7,13 +7,8 @@ import org.example.repository.TransactionHistoryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -82,10 +77,9 @@ public class StudentServiceImpl implements StudentService {
         TransactionHistory returnHistory = transactionHistoryRepository.getLastRowHistory(emailid,title,"returned");
         LocalDate date1 = borrowHistory.getDue_date();
         LocalDate date2 = returnHistory.getDate().toLocalDateTime().toLocalDate();
-        if(date1.isBefore(date2))
-        {
-             return "You have returned the book after the due date.So need to pay $5 fine";
+        if(date1.isBefore(date2)){
+             return "Book returned Successfully! But you have returned the book after the due date.So need to pay $5 fine";
         }
-        return "No due date";
+        return "Book returned Successfully! No fine!";
     }
 }
