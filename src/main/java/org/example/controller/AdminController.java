@@ -65,13 +65,6 @@ public class AdminController {
         return "/student-list";
     }
 
-    /** Method to get add form */
-    @GetMapping("/add")
-    public String getAddForm(Model model) {
-        model.addAttribute("student", new Student());
-        return "/add-student";
-    }
-
     @PostMapping("/transaction-details")
     public String getTransactionDetails(Model model) {
         List<TransactionHistory> history = transactionRepository.findAll();
