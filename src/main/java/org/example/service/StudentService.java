@@ -18,5 +18,6 @@ public interface StudentService {
      public boolean isValidUser(String emailid, String password);
      public boolean isStudent(String emailid, String password);
      public void updateStudent(int id,String name,String emailid);
+     public String checkDueDate(String emailid,String title);
 
 }

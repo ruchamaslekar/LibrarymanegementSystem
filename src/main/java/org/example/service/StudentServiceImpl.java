@@ -1,7 +1,9 @@
 package org.example.service;
 
 import org.example.entity.Student;
+import org.example.entity.TransactionHistory;
 import org.example.repository.StudentRepository;
+import org.example.repository.TransactionHistoryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,9 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private TransactionHistoryRepository transactionHistoryRepository;
     private final Logger LOGGER =
             LoggerFactory.getLogger(StudentService.class);
 
@@ -52,15 +58,6 @@ public class StudentServiceImpl implements StudentService {
     public void registerStudent(String name,String emailId,String password,String role) {
     studentRepository.registerStudent(name,emailId,password,role);
     }
-//    @Override
-//    public UserDetails loadUserByUsername(String emailid) throws UsernameNotFoundException {
-//        Student student = studentRepository.findByUsername(emailid);
-//        if (student == null) {
-//            throw new UsernameNotFoundException("User not found");
-//        }
-//        return new org.springframework.security.core.userdetails.User(student.getEmailId(), student.getPassword(), new ArrayList<>());
-//    }
-
     @Override
     public boolean isValidUser(String emailid, String password) {
         Student user = studentRepository.findByUsername(emailid);
@@ -68,19 +65,27 @@ public class StudentServiceImpl implements StudentService {
         if (user != null && user.getPassword().equals(password)) {
             return true;
         }
-
         return false;
     }
 
     @Override
     public boolean isStudent(String emailid, String password) {
         Student user = studentRepository.findUserRole(emailid);
-
         if (user != null && user.getRole().equals("student")) {
             return true;
         }
-
         return false;
     }
 
+    public String checkDueDate(String emailid,String title){
+        TransactionHistory borrowHistory = transactionHistoryRepository.getLastRowHistory(emailid,title,"borrowed");
+        TransactionHistory returnHistory = transactionHistoryRepository.getLastRowHistory(emailid,title,"returned");
+        LocalDate date1 = borrowHistory.getDue_date();
+        LocalDate date2 = returnHistory.getDate().toLocalDateTime().toLocalDate();
+        if(date1.isBefore(date2))
+        {
+             return "You have returned the book after the due date.So need to pay $5 fine";
+        }
+        return "No due date";
+    }
 }
