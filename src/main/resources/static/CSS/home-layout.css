@@ -29,13 +29,15 @@ ul {
   padding: 10px 20px;
   margin-right: 5px;
   cursor: pointer;
+  width: 160px;
 }
 
 .search-box {
   padding: 10px;
   border: 1px solid black;
   font-size: 15px;
-  min-width: 1000 px;
+  width: 160px;
+  size: 50px;
 }
 
 .search-button {
@@ -101,7 +103,7 @@ a {
     align-items: flex-start;
 }
 .search-form {
-    width: 200px; /* Adjust the form width as needed */
+    width: 200px;
     margin: 10 auto;
 }
 input[type=text], input[type=password] ,input[type=email]{
