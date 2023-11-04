@@ -7,10 +7,12 @@
 </head>
 
 <body>
+
     <ul th:fragment="userNavBar">
     <a href="/adminHome">Home</a>
     <a style="float:right"></a> <a class="active" href="/login">Logout</a>
     </ul>
+    <h2>Admin Home</h2>
     <div class="button-container">
         <form action="#" th:action="@{/student-list}" method="post">
             <button type="submit" class="button" formaction="/book-list"> Book List</button>

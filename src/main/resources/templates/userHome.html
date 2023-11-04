@@ -6,21 +6,24 @@
     <link rel="stylesheet" type="text/css" th:href="@{CSS/home-layout.css}">
 </head>
 <body>
+
     <ul th:fragment="userNavBar">
         <a href="/userHome">Home</a>
         <a style="float:right"/> <a class="active" href="/login">Logout</a>
     </ul>
+    <h2>User Home</h2>
     <div class="button-container">
         <form action="#" th:action="@{/borrow-books}" th:object="${student}" method="get">
-            <label for="title">Please enter book title here:</label>
-            <input type="text" id="title" class = "search-box" name="title" minlength="2" optional><br><br>
-            <label for="student_id">Please confirm your student id:</label>
-            <input type="Number" id="student_id" class = "search-box" name="student_id" optional ><br><br>
+            <label for="title">Please enter book title here:<span class="required"></span></label>
+            <input type="text" id="title" size="60" class = "search-box" name="title" minlength="2" required><br><br>
             <button type="submit" class="button" formaction="/search-books"> Search</button>
             <button type="submit" class="button" formaction="/borrow-books"> Borrow</button>
             <button type="submit" class="button" formaction="/return-books"> Return</button>
-            <button type="submit" class="button" formaction="/user-transaction"> Transaction History</button></li>
         </form>
     </div>
+    <br>
+    <form>
+        <button type="submit" class="button" formaction="/user-transaction"> Transaction History</button>
+    </form>
 </body>
 </html>
