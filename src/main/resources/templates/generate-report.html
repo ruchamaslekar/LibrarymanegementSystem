@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Library Management System</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{CSS/home-layout.css}">
+</head>
+<body>
+<ul th:fragment="userNavBar">
+    <a href="/adminHome">Home</a>
+    <a style="float:right"/> <a class="active" href="/login">Logout</a>
+</ul>
+<h2>Transaction History</h2>
+<form action="#" th:action="@{/adminHome}" method="post">
+    <table>
+        <thead>
+        <tr>
+            <th>Amount</th>
+            <th>Email Id</th>
+
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${amount}"></td>
+            <td th:text="${emailId}"></td></tr>
+        </tbody>
+    </table>
+    <div>
+        <button type="submit" class="button" formaction="/adminHome"> Back</button>
+    </div>
+</form>
+</body>
+</html>
