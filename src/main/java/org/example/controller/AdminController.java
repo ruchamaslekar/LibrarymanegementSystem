@@ -72,5 +72,14 @@ public class AdminController {
         return "/transaction-history";
     }
 
+    @PostMapping("/generate-report")
+    public String generateReport(Model model) {
+        Integer amount = transactionRepository.getFine();//
+        String emailId= transactionRepository.getEmailIdForFine();
+        model.addAttribute("amount", amount);//
+        model.addAttribute("emailId", emailId);
+        return "/generate-report";
+    }
+
 
 }

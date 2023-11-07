@@ -78,7 +78,8 @@ public class StudentServiceImpl implements StudentService {
         LocalDate date1 = borrowHistory.getDue_date();
         LocalDate date2 = returnHistory.getDate().toLocalDateTime().toLocalDate();
         if(date1.isBefore(date2)){
-             return "Book returned Successfully! But you have returned the book after the due date.So need to pay $5 fine";
+            transactionHistoryRepository.addFine(5,emailid);
+            return "Book returned Successfully! But you have returned the book after the due date.So need to pay $5 fine";
         }
         return "Book returned Successfully! No fine!";
     }
