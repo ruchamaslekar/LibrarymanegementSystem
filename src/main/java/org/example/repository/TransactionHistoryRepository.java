@@ -29,4 +29,15 @@ public interface TransactionHistoryRepository extends JpaRepository<TransactionH
 
     @Query(value = "select * from transaction_history where emailid=?1 and title=?2 and action=?3 order by last_updated desc limit 1",nativeQuery = true)
     TransactionHistory getLastRowHistory(String emailid,String title,String action);
+
+    @Query(value = "SELECT * FROM fine",nativeQuery = true)
+    Integer getFine();
+
+    @Query(value = "SELECT emailId FROM fine",nativeQuery = true)
+    String getEmailIdForFine();
+
+    @Modifying
+    @Transactional
+    @Query(value = "Insert into fine (amount,emailId) values (?1,?2) ",nativeQuery = true)
+    void addFine(int amount,String emailId);
 }
