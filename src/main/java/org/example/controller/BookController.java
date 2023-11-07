@@ -68,16 +68,18 @@ public class BookController {
         return "/book-list";
     }
 
+    /** Method to get Book list from service
+     * and navigate to book-details html page
+     */
     @GetMapping("/book-list")
     public String getBooks1(Model model) {
-        //LOGGER.info("Inside getBooks of BookController");
         List<Book> books = bookService.fetchBookList();
         model.addAttribute("book",books);
         return "/book-list";
     }
 
-    /** Method to get result of return Book from service
-     * and navigate to return-books html page
+    /** Method to get result of add books from service
+     * and redirect to book-list html page
      */
     @PostMapping("/add-books")
     public String addBooks(String title,String author,int quantity,Model model) {
@@ -86,6 +88,9 @@ public class BookController {
         return "redirect:/book-list";
     }
 
+    /** Method to get result of update books from service
+     * and redirect to book-list html page
+     */
     @PostMapping("/update-books")
     public String updateBooks(Model model,int quantity,int id) {
         bookRepository.updateBooks(quantity,id);
@@ -93,6 +98,9 @@ public class BookController {
         return "redirect:/book-list";
     }
 
+    /** Method to get result of find by id from repository
+     * and navigate to save book html page
+     */
     @RequestMapping("/editBook/{id}")
     public String editBook(@PathVariable("id") int id,Model model) {
         Book book =  bookRepository.findById(id);
@@ -100,6 +108,9 @@ public class BookController {
         return "/save-book";
     }
 
+    /** Method to get result of delete by id from service
+     * and redirect to book-list html page
+     */
     @RequestMapping("/deleteBook/{id}")
     public String deleteBook(@PathVariable("id")int id,Model model) {
         String result = bookService.deleteById(id);

@@ -13,10 +13,10 @@ import java.util.List;
 public interface TransactionHistoryRepository extends JpaRepository<TransactionHistory, Integer> {
     @Modifying
     @Transactional
-    @Query(value = "insert into transaction_history (book_id,student_id,action,title,emailid,due_date) values (?1,?2,?3,?4,?5,?6)" ,nativeQuery = true)
+    @Query(value = "Insert into transaction_history (book_id,student_id,action,title,emailid,due_date) values (?1,?2,?3,?4,?5,?6)" ,nativeQuery = true)
     void  updateTransactionHistory(int bookId, int student_id, String action, String title, String emailid, LocalDate due_date);
 
-    @Query(value = "select * from transaction_history where emailid=?1",nativeQuery = true)
+    @Query(value = "Select * from transaction_history where emailid=?1",nativeQuery = true)
     List<TransactionHistory> getTransactionHistory(String emailid);
 
     @Modifying
@@ -24,16 +24,16 @@ public interface TransactionHistoryRepository extends JpaRepository<TransactionH
     @Query(value = "Delete from transaction_history where book_id=?1",nativeQuery = true)
     void deleteBookById(int bookID);
 
-    @Query(value = "select * from transaction_history where emailid=?1 and title=?2 and action=?3",nativeQuery = true)
+    @Query(value = "Select * from transaction_history where emailid=?1 and title=?2 and action=?3",nativeQuery = true)
     List<TransactionHistory> getBorrowHistory(String emailid, String title,String action);
 
-    @Query(value = "select * from transaction_history where emailid=?1 and title=?2 and action=?3 order by last_updated desc limit 1",nativeQuery = true)
+    @Query(value = "Select * from transaction_history where emailid=?1 and title=?2 and action=?3 order by last_updated desc limit 1",nativeQuery = true)
     TransactionHistory getLastRowHistory(String emailid,String title,String action);
 
-    @Query(value = "SELECT * FROM fine",nativeQuery = true)
+    @Query(value = "Select * from fine",nativeQuery = true)
     Integer getFine();
 
-    @Query(value = "SELECT emailId FROM fine",nativeQuery = true)
+    @Query(value = "Select emailId from fine",nativeQuery = true)
     String getEmailIdForFine();
 
     @Modifying

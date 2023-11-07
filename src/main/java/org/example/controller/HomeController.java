@@ -12,36 +12,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
-
     @Autowired
     private StudentService studentService;
 
-    @Autowired
-    private TransactionHistoryRepository transactionRepository;
-
-
-    private final Logger LOGGER =
-            LoggerFactory.getLogger(StudentController.class);
-
-    /** Method to get Student list from service
-     * and navigate it to home html page
-     */
+    /** Method to  navigate it to userHome html page */
     @PostMapping("/userHome")
     public String postUserHome(Model model) {
         return "/userHome";
     }
+
+    /** Method to  navigate it to userHome html page */
     @GetMapping("/userHome")
     public String getUserHome(Model model,HttpSession session) {
         return "/userHome";
     }
 
+    /** Method to  navigate it to adminHome html page */
     @PostMapping("/adminHome")
     public String postAdminHome(Model model) {
         List<Student> studentList = studentService.fetchStudentList();
@@ -52,6 +43,8 @@ public class HomeController {
         }
         return "/adminHome";
     }
+
+    /** Method to  navigate it to adminHome html page */
     @GetMapping("/adminHome")
     public String getAdminHome(Model model) {
         List<Student> studentList = studentService.fetchStudentList();
@@ -63,14 +56,14 @@ public class HomeController {
         return "/adminHome";
     }
 
+    /** Method to navigate to login page */
     @GetMapping("/login")
     public String displayLoginPage1()
     {
         return "/login";
     }
 
-    /** Method to navigate to login page
-     */
+    /** Method to navigate to login page */
     @PostMapping("/login")
     public String displayLoginPage(@RequestParam String username, @RequestParam String password, Model model, HttpServletRequest request) {
         HttpSession hs = request.getSession();
@@ -88,6 +81,7 @@ public class HomeController {
         }
     }
 
+    /** Method to navigate to logout page*/
     @GetMapping("/logout")
     public String logout(Model model) {
         String logout = "You have been logged out successfully";

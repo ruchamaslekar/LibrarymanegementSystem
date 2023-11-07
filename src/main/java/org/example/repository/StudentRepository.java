@@ -25,7 +25,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "update students set name=?2,emailid=?3 where id=?1", nativeQuery = true)
+    @Query(value = "Update students set name=?2,emailid=?3 where id=?1", nativeQuery = true)
     void updateStudent(int id,String name,String emailid);
 
     @Transactional
@@ -39,10 +39,5 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     @Query(value = "Select * from students where emailid=?1", nativeQuery = true)
     Student findUserRole(String emailid);
 
-//    @Query(nativeQuery = true, value = "select * from students where emailId=?1")
-//    Student findByEmailId(String emailId);
-//
-//    @Query(nativeQuery = true, value = "select * from students where id=?1")
-//    Student getStudentById(int id);
 
 }

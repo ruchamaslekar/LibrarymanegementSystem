@@ -65,6 +65,7 @@ public class AdminController {
         return "/student-list";
     }
 
+    /** Method to get transaction-details */
     @PostMapping("/transaction-details")
     public String getTransactionDetails(Model model) {
         List<TransactionHistory> history = transactionRepository.findAll();
@@ -72,6 +73,7 @@ public class AdminController {
         return "/transaction-history";
     }
 
+    /** Method to generate report */
     @PostMapping("/generate-report")
     public String generateReport(Model model) {
         Integer amount = transactionRepository.getFine();//

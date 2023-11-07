@@ -19,40 +19,45 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
-
     @Autowired
     private TransactionHistoryRepository transactionHistoryRepository;
-    private final Logger LOGGER =
-            LoggerFactory.getLogger(StudentService.class);
 
+    /** A method to fetch student list from repository */
     @Override
     public List<Student> fetchStudentList() {
         return studentRepository.findAll();
     }
 
+    /** A method to get student by id from repository */
     @Override
     public Student getStudentById(int id) {
         return studentRepository.findById(id).orElse(null);
     }
 
+    /** A method to save students to database using repository */
     @Override
     public void saveStudents(String name,String emailid) {
         studentRepository.saveStudent(name,emailid);
     }
 
+    /** A method to update student details in database by repository */
     @Override
     public void updateStudent(int id,String name,String emailid) {
         studentRepository.updateStudent(id,name,emailid);
     }
 
+    /** A method to delete student from database by repository */
     @Override
     public void deleteStudent(Integer id) {
         studentRepository.deleteStudentByID(id);
     }
 
+    /** A method to register student in database by repository */
     public void registerStudent(String name,String emailId,String password,String role) {
     studentRepository.registerStudent(name,emailId,password,role);
     }
+
+    /** A method to validate user  */
     @Override
     public boolean isValidUser(String emailid, String password) {
         Student user = studentRepository.findByUsername(emailid);
@@ -63,6 +68,7 @@ public class StudentServiceImpl implements StudentService {
         return false;
     }
 
+    /** A method to check if the user is student or not  */
     @Override
     public boolean isStudent(String emailid, String password) {
         Student user = studentRepository.findUserRole(emailid);
@@ -72,6 +78,7 @@ public class StudentServiceImpl implements StudentService {
         return false;
     }
 
+    /** A method to check due date of the books for returning  */
     public String checkDueDate(String emailid,String title){
         TransactionHistory borrowHistory = transactionHistoryRepository.getLastRowHistory(emailid,title,"borrowed");
         TransactionHistory returnHistory = transactionHistoryRepository.getLastRowHistory(emailid,title,"returned");

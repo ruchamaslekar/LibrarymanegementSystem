@@ -17,15 +17,12 @@ import java.util.List;
  */
 @Service
 public class BookServiceImpl implements BookService {
-
     @Autowired
     private BookRepository bookRepository;
-
     @Autowired
     private StudentRepository studentRepository;
     @Autowired
     private StudentService studentService;
-
     @Autowired
     private TransactionHistoryRepository transactionHistoryRepository;
 
@@ -36,10 +33,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> searchBooksByTitle(String title) {
-
-        return bookRepository.findByTitleContaining(title);
+         return bookRepository.findByTitleContaining(title);
     }
 
+    /** A method to implement borrow book logic */
     @Override
     public String borrowBookDetails(String title,String emailid) {
         Book book = bookRepository.getBookDetails(title);
@@ -50,8 +47,8 @@ public class BookServiceImpl implements BookService {
         bookRepository.updateTable(title);
         Student student = studentRepository.findByUsername(emailid);
         LocalDate date = LocalDate.now().plusDays(30);
-        int borrowCount =0;
-        int returnCount =0;
+        int borrowCount = 0;
+        int returnCount = 0;
         List<TransactionHistory> borrowHistory = transactionHistoryRepository.getBorrowHistory(emailid,title,"borrowed");
         for(TransactionHistory hist: borrowHistory) {
             borrowCount++;
@@ -68,10 +65,10 @@ public class BookServiceImpl implements BookService {
         return result;
     }
 
+    /** A method to implement return book logic */
     @Override
     public String returnBookDetails(String title,String emailid) {
         Book book = bookRepository.getBookDetails(title);
-        StringBuilder result = new StringBuilder();
         bookRepository.modifyTable(title);
         Student student = studentRepository.findByUsername(emailid);
         LocalDate date = null;
@@ -94,6 +91,7 @@ public class BookServiceImpl implements BookService {
          return studentService.checkDueDate(emailid,title);
     }
 
+    /** A method to implement add books logic */
     @Override
     public String addBookDetails(String title,String bookAuthor,int quantity) {
         List<Book> books= fetchBookList();
@@ -106,6 +104,7 @@ public class BookServiceImpl implements BookService {
         return "Book added to table";
     }
 
+    /** A method to get books by id */
     @Override
     public String getBookById(int bookID) {
         Book b = bookRepository.findById(bookID);
@@ -113,6 +112,7 @@ public class BookServiceImpl implements BookService {
         return "Book updated";
     }
 
+    /** A method to delete books by id */
     @Override
     public String deleteById(int bookID) {
         StringBuilder result = new StringBuilder();
@@ -124,7 +124,5 @@ public class BookServiceImpl implements BookService {
         }
         return "Book successfully deleted";
     }
-
-
 
 }

@@ -13,17 +13,11 @@ import java.util.List;
 
 @Controller
 public class TransactionHistoryController {
-
     @Autowired
     private TransactionHistoryRepository transactionRepository;
-    @Autowired
-    private BookService bookService;
-    @Autowired
-    private StudentRepository studentRepository;
-
 
     /** Method to get transaction history from service
-     * and navigate it to transaction-history html page
+     * and navigate it to user-transaction html page
      */
     @GetMapping("/user-transaction")
     public String showTransactionHistory(Model model,HttpSession session) {
@@ -33,6 +27,7 @@ public class TransactionHistoryController {
         return "/user-transaction";
     }
 
+    /** Method to navigate it to transaction-history html page */
     @PostMapping("/transaction-history")
     public String viewTransactionHistory(Model model) {
         return "/transaction-history";

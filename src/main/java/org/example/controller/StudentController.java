@@ -12,16 +12,17 @@ import org.springframework.web.bind.annotation.*;
  */
 @Controller
 public class StudentController {
-
     @Autowired
     private StudentService studentService;
 
+    /** Method to register a new student */
     @PostMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("student", new Student());
         return "/student-registration";
     }
 
+    /** Method to call registration-success html page */
     @PostMapping("/register-done")
     public String registerStudent(String name,String emailId,String password, String role,Model model) {
         studentService.registerStudent(name,emailId,password,role);

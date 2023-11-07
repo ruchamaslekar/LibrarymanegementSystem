@@ -23,6 +23,4 @@ public interface BookService {
 
     public String getBookById(int bookID);
 
-//    public List<TransactionHistory> getTransactionHistoryForId();
-//    public List<TransactionHistory> showTransactionHistory(String title);
 }
