@@ -22,8 +22,8 @@ public class AdminController {
 
     /** Method to add student */
     @PostMapping("/add")
-    public String addStudent(String name,String emailId) {
-        studentService.saveStudents(name,emailId);
+    public String addStudent(String name,String emailid) {
+        studentService.saveStudents(name,emailid);
         return "redirect:/student-list";
     }
 
